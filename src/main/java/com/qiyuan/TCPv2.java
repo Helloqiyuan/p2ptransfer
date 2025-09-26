@@ -2,7 +2,8 @@ package com.qiyuan;
 
 import com.qiyuan.pojo.BreakpointContinue;
 import com.qiyuan.pojo.Doc;
-import com.qiyuan.utils.HashUtils;
+import com.qiyuan.utils.Utils;
+import lombok.NoArgsConstructor;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -12,7 +13,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
-
+@NoArgsConstructor
 public class TCPv2 {
     /**
      * 接收端监听的端口号
@@ -23,18 +24,22 @@ public class TCPv2 {
      * 缓冲区大小
      * 每次读取或写入的字节数
      */
-    private int cache = 4 * 1024; //64KB
+    private int cache = 4 * 1024; //4KB
 
     /**
      * 发送端发送的文件的路径
      */
-    private String path = "./send/xx.txt";
+    private String path;
 
     /**
      * 接收端的IPv6地址
      */
-    private String TargetIPv6 = "127.0.0.1";
+    private String TargetIPv6;
 
+    public TCPv2(String  path, String TargetIPv6){
+        this.path = path;
+        this.TargetIPv6 = TargetIPv6;
+    }
     /**
      * 接收端服务
      */
@@ -48,7 +53,7 @@ public class TCPv2 {
 
 
             // 2.接收文件基本信息
-//            System.out.println("等待发送方发送文件基本信息...");
+            System.out.println("等待发送方发送文件基本信息...");
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
             Doc doc = (Doc) ois.readObject();
             System.out.println("已接收文件基本信息" + doc);
@@ -108,7 +113,6 @@ public class TCPv2 {
                 System.out.flush();
             }
             System.out.println("\n本次共接收" + (totalReceived - breakpointContinue.getBreakPointByte()) + "字节,合计" + ((totalReceived - breakpointContinue.getBreakPointByte()) * 1.0 / 1024 / 1024) + "MB");
-            System.out.println("接收完成");
 
             // 5.更正文件名
             fos.close(); //关闭文件输出流
@@ -119,9 +123,13 @@ public class TCPv2 {
 
 
             // 6.校验文件
-            // TODO
-
-
+            System.out.println("正在校验文件...");
+            String fileChecksum = Utils.getFileChecksum(new File("./Receive/" + doc.getName()));
+            if(fileChecksum.equals(doc.getMd5())){
+                System.out.println("文件校验成功");
+            }else{
+                System.out.println("文件校验失败");
+            }
 
             // 7.接收完成关闭资源
             ips.close(); //关闭输入流
@@ -150,8 +158,8 @@ public class TCPv2 {
             }
             System.out.println("正在生成文件(" + path + ")的哈希值,请稍后...");
             // 简化过程先不做哈希运算
-//            Doc doc = new Doc(file.getName(),file.length(), HashUtils.getFileChecksum(file));
-            Doc doc = new Doc(file.getName(),file.length(), "123456");
+            Doc doc = new Doc(file.getName(),file.length(), Utils.getFileChecksum(file));
+//            Doc doc = new Doc(file.getName(),file.length(), "123456");
 //            System.out.println("文件哈希值计算完成");
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
             oos.writeObject(doc);
