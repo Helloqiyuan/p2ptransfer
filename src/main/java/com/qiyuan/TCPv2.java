@@ -23,12 +23,12 @@ public class TCPv2 {
      * 缓冲区大小
      * 每次读取或写入的字节数
      */
-    private Integer cache = 4 * 1024; //64KB
+    private int cache = 4 * 1024; //64KB
 
     /**
      * 发送端发送的文件的路径
      */
-    private String path = "./send/yy.iso";
+    private String path = "./send/xx.txt";
 
     /**
      * 接收端的IPv6地址

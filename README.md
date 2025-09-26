@@ -88,8 +88,8 @@ java -cp target/tcptransform-1.0-SNAPSHOT.jar com.qiyuan.test.Send
 
 ```java
 private int port = 8888;                // 监听端口
-private Integer cache = 4 * 1024;       // 缓冲区大小(4KB)
-private String path = "./send/yy.iso";  // 发送文件路径
+private int cache = 4 * 1024;       // 缓冲区大小(4KB)
+private String path = "./send/xx.txt";  // 发送文件路径
 private String TargetIPv6 = "xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx"; // 目标IPv6地址
 ```
 
