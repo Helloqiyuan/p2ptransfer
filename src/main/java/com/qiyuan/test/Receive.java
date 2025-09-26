@@ -22,6 +22,8 @@ public class Receive {
             }while (!"quit".equals(i));
         }
         localIPv6.forEach(System.out::println);
-        new TCPv2().Receive();
+        System.out.println("选择监听的端口:");
+        int port = sc.nextInt();
+        new TCPv2(port).Receive();
     }
 }

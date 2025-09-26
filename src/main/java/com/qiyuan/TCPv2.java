@@ -24,7 +24,7 @@ public class TCPv2 {
      * 缓冲区大小
      * 每次读取或写入的字节数
      */
-    private int cache = 4 * 1024; //4KB
+    private int cache = 128 * 1024; //4KB
 
     /**
      * 发送端发送的文件的路径
@@ -36,9 +36,13 @@ public class TCPv2 {
      */
     private String TargetIPv6;
 
-    public TCPv2(String  path, String TargetIPv6){
+    public TCPv2(int port){
+        this.port = port;
+    }
+    public TCPv2(String  path, String TargetIPv6,int port){
         this.path = path;
         this.TargetIPv6 = TargetIPv6;
+        this.port = port;
     }
     /**
      * 接收端服务

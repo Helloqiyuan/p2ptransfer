@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class Send {
     private static String filepath;
     private static String IPv6;
+    private static int port;
 
     public static void main(String[] args) throws Exception {
         System.out.println("=========这是一个文件传输程序=========");
@@ -40,7 +41,10 @@ public class Send {
 //            System.out.println("输入有误请重新输入:");
 //            sc.nextLine();
 //        }
-        new TCPv2(filepath, IPv6).Send();
+
+        System.out.print("请输入对方的端口号:");
+        port = sc.nextInt();
+        new TCPv2(filepath, IPv6,port).Send();
     }
 
 }
