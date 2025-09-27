@@ -40,19 +40,19 @@ mvn clean package
 #### 接收文件
 
 ```bash
-java -jar tcptransform-2.2.0.jar
+java -jar tcptransform-2.2.1.jar
 ```
 
 或者
 
 ```bash
-java -cp tcptransform-2.2.0.jar com.qiyuan.test.Receive
+java -cp tcptransform-2.2.1.jar com.qiyuan.test.Receive
 ```
 
 #### 发送文件
 
 ```bash
-java -cp tcptransform-2.2.0.jar com.qiyuan.test.Send
+java -cp tcptransform-2.2.1.jar com.qiyuan.test.Send
 ```
 
 ## 配置说明
