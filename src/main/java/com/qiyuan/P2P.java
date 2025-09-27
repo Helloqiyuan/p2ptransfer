@@ -130,12 +130,14 @@ public class P2P {
             byte[] buffer = new byte[cache];
             int len;
             Long totalReceived = breakpointContinue.getBreakPointByte();
+            long start = System.currentTimeMillis(); // 开始计时
             while ((len = ips.read(buffer)) != -1) {
                 fos.write(buffer, 0, len);
                 totalReceived += len;
                 Utils.loading(totalReceived, doc.getSize());
             }
-            System.out.println("\n本次共接收" + (totalReceived - breakpointContinue.getBreakPointByte()) + "字节,合计" + ((totalReceived - breakpointContinue.getBreakPointByte()) * 1.0 / 1024 / 1024) + "MB");
+            long end = System.currentTimeMillis(); // 结束计时
+            System.out.println("\n本次共接收" + (totalReceived - breakpointContinue.getBreakPointByte()) + "字节,合计" + ((totalReceived - breakpointContinue.getBreakPointByte()) / 1024 / 1024) + "MB");
 
             // 5.更正文件名
             fos.close(); //关闭文件输出流
@@ -153,6 +155,8 @@ public class P2P {
             } else {
                 System.out.println("文件校验失败");
             }
+
+            System.out.println("文件传输耗时:" + (end - start) / 1000 + "秒,程序结束");
 
 
         } catch (NullPointerException e) {
@@ -228,13 +232,16 @@ public class P2P {
             byte[] buffer = new byte[cache];
             int len;
             Long totalSent = response.getBreakPointByte();
+            long start = System.currentTimeMillis(); // 开始计时
             while ((len = fis.read(buffer)) != -1) {
                 ops.write(buffer, 0, len);
                 totalSent += len;
                 Utils.loading(totalSent, doc.getSize());
             }
-            System.out.println("\n本次共发送" + (totalSent - response.getBreakPointByte()) + "字节,合计" + ((totalSent - response.getBreakPointByte()) * 1.0 / 1024 / 1024) + "MB");
+            long end = System.currentTimeMillis(); // 结束计时
+            System.out.println("\n本次共发送" + (totalSent - response.getBreakPointByte()) + "字节,合计" + ((totalSent - response.getBreakPointByte()) / 1024 / 1024) + "MB");
             System.out.println("发送完成");
+            System.out.println("文件传输耗时:" + (end - start) / 1000 + "秒,程序结束");
 
         } catch (NullPointerException e) {
             System.err.println("文件路径输入错误");

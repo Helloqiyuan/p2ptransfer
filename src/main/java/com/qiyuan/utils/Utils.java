@@ -58,10 +58,7 @@ public class Utils {
 
 
     public static String getFileChecksum(File file) throws Exception {
-        long start = System.currentTimeMillis();
         String md5 = getFileChecksum(file, "MD5");
-        long end = System.currentTimeMillis();
-        System.out.println("计算完成,耗时:" + (end - start) / 1000.0 + "s");
         return md5;
     }
 
@@ -164,12 +161,7 @@ public class Utils {
      */
     public static void loading(Long done, Long total) {
         double percent = done * 100.0 / total;
-        if (done.equals(total)) {
-            System.out.print("\r进度: 100%");
-            return;
-        }
-        System.out.printf("\r进度: %.3f%%", percent);
-        System.out.flush();
+        System.out.printf("\r进度: %.2f%%", percent);
     }
 
     /**
