@@ -19,7 +19,7 @@ public class Send {
         do {
             localIPv6 = Utils.getLocalIPv6();
             if (localIPv6.isEmpty()) {
-                System.out.print("没有可用的IPV6地址,按回车重新检测:");
+                System.out.print("没有可用的IPV6地址,按回车重新查找:");
                 String i = sc.nextLine();
                 if (":".equals(i)) {
                     break;
@@ -48,7 +48,7 @@ public class Send {
         System.out.println("你输入的文件路径是:" + filepath);
 
         // 输入对方IPV6:Port
-        System.out.print("请输入对方的IPV6地址(比如:[2409:8938:2476:686:f5c3:2340:37ba:75]:8888),要是有公网IPV4也行\n:");
+        System.out.print("请输入对方的IPV6地址(比如:[2409:8938:2476:686:f5c3:2340:37ba:75]:8888)\n:");
         String[] in = sc.nextLine().split("]");
         IPv6 = in[0].substring(1).trim();
         port = Integer.parseInt(in[1].substring(1).trim());

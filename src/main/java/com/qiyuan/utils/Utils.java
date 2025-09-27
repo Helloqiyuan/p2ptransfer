@@ -13,6 +13,27 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Utils {
+    /**
+     * 获取本地第一个非回环、非虚拟的 IPv4 地址
+     */
+    public static List<String> getLocalIPv4() throws SocketException {
+        List<String> ipv4List = new ArrayList<>();
+        Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+
+        while (interfaces.hasMoreElements()) {
+            NetworkInterface ni = interfaces.nextElement();
+            if (!ni.isUp() || ni.isLoopback() || ni.isVirtual()) continue;
+
+            Enumeration<InetAddress> addresses = ni.getInetAddresses();
+            while (addresses.hasMoreElements()) {
+                InetAddress addr = addresses.nextElement();
+                if (addr instanceof Inet4Address && !addr.isLoopbackAddress()) {
+                    ipv4List.add(addr.getHostAddress());
+                }
+            }
+        }
+        return ipv4List;
+    }
     public static List<String> getLocalIPv6() throws SocketException {
         List<String> ipv6List = new ArrayList<>();
         Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
@@ -149,5 +170,14 @@ public class Utils {
         }
         System.out.printf("\r进度: %.3f%%", percent);
         System.out.flush();
+    }
+
+    /**
+     * ERROR输出
+     */
+    public static void error(){
+        System.err.println("\n连接异常");
+        System.err.println("1.可能是对方未启动服务");
+        System.err.println("2.可能是网络异常中断");
     }
 }

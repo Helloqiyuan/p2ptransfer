@@ -155,8 +155,12 @@ public class P2P {
             }
 
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (NullPointerException e) {
+            System.err.println("文件路径输入错误");
+//            e.printStackTrace();
+        } catch (SocketException e) {
+            Utils.error();
+//            e.printStackTrace();
         } finally {
             // 7.接收完成关闭资源
             if (ips != null) {
@@ -233,10 +237,10 @@ public class P2P {
             System.out.println("发送完成");
 
         } catch (NullPointerException e) {
-            System.out.println("文件路径输入错误");
+            System.err.println("文件路径输入错误");
 //            e.printStackTrace();
         } catch (SocketException e) {
-            System.out.println("连接异常");
+            Utils.error();
 //            e.printStackTrace();
         } finally {
             // 5.发送完成关闭资源
