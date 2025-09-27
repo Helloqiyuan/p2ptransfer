@@ -40,19 +40,19 @@ The project has two main entry classes for sending and receiving files:
 #### Receiving Files
 
 ```bash
-java -jar tcptransform-2.2.0.jar
+java -jar p2p.jar
 ```
 
 Or
 
 ```bash
-java -cp tcptransform-2.2.0.jar com.qiyuan.test.Receive
+java -cp p2p.jar com.qiyuan.test.Receive
 ```
 
 #### Sending Files
 
 ```bash
-java -cp tcptransform-2.2.0.jar com.qiyuan.test.Send
+java -cp p2p.jar com.qiyuan.test.Send
 ```
 
 ## Configuration
