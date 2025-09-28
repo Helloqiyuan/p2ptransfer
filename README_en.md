@@ -1,10 +1,10 @@
-# TCP File Transfer Tool
+# P2P File Transfer Tool
 
-A file transfer tool based on TCP protocol, supporting IPv6 addresses and breakpoint resume functionality.
+A file transfer tool based on Java Socket, supporting IPv6 addresses and breakpoint resume functionality.
 
 ## Features
 
-- Reliable file transfer implemented based on TCP protocol
+- Reliable file transfer implemented based on Java Socket
 - Support for IPv6 address connections
 - Breakpoint resume functionality
 - Real-time display of file transfer progress
