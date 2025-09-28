@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.qiyuan</groupId>
-  <artifactId>p2ptransform</artifactId>
+  <artifactId>p2ptransfer</artifactId>
   <version>2.2.2</version>
   <packaging>jar</packaging>
 
-  <name>p2ptransform</name>
+  <name>p2ptransfer</name>
   <url>http://maven.apache.org</url>
 
   <properties>
