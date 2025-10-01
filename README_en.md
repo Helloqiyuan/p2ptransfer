@@ -22,8 +22,27 @@ src/
             ├── P2P.java        # Core file transfer implementation
             ├── pojo/           # Data transfer objects
             ├── test/           # Program entry points
-            └── utils/          # Utility classes
+            ├── utils/          # Utility classes
+            └── cs/             # Client-server communication module
+                ├── Client.java # Client implementation with send/receive modes
+                └── Server.java # Server implementation for coordinating connections
 ```
+
+## Client-Server Communication Module (cs package)
+
+The newly added client-server communication module provides a more user-friendly interface and room number matching mechanism:
+
+### Client.java
+- Provides interactive menu to choose between sending or receiving files
+- Implements room number mechanism for pairing senders and receivers
+- Automatically handles IPv6 address detection and port allocation
+- Supports both drag-and-drop and file selector methods for choosing files
+
+### Server.java
+- Uses multi-threading to handle multiple client connections
+- Maintains mapping relationship between room numbers and receiver connection information
+- Automatically generates unique room numbers for receivers
+- Coordinates connection matching between senders and receivers
 
 ## Usage
 
@@ -35,9 +54,21 @@ mvn clean package
 
 ### Running the Program
 
-The project has two main entry classes for sending and receiving files:
+The project provides two ways to use:
 
-#### Receiving Files
+#### Method 1: Using cs package (Recommended)
+
+This is the new client-server mode with a more user-friendly interface and room number matching mechanism:
+
+```bash
+java -cp p2p.jar com.qiyuan.cs.Client
+```
+
+Follow the prompts to select operation mode (send or receive files), the system will automatically assign a room number or ask you to input a room number.
+
+#### Method 2: Using test package (Traditional way)
+
+##### Receiving Files
 
 ```bash
 java -jar p2p.jar
@@ -49,7 +80,7 @@ Or
 java -cp p2p.jar com.qiyuan.test.Receive
 ```
 
-#### Sending Files
+##### Sending Files
 
 ```bash
 java -cp p2p.jar com.qiyuan.test.Send

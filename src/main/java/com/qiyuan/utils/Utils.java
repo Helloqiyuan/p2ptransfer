@@ -6,8 +6,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.*;
 import java.security.MessageDigest;
-import java.util.ArrayList;
-import java.util.Enumeration;
+import java.util.*;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -171,5 +170,38 @@ public class Utils {
         System.err.println("\n连接异常");
         System.err.println("1.可能是对方未启动服务");
         System.err.println("2.可能是网络异常中断");
+    }
+
+    public static List<String> parseIPAndPortFrom(String ipAndPort){
+        String[] raw = ipAndPort.split("]");
+        List<String> ret = new ArrayList<>();
+        ret.add(raw[0].substring(1));
+        ret.add(raw[1].substring(1));
+        return ret;
+    }
+    /**
+     * 循环提示获取IPv6
+     * @return 本地IPv6地址
+     * @throws Exception 获取IPv6地址异常
+     */
+    public static String handleIPv6() throws Exception{
+        List<String> localIPv6;
+        String input;
+        Scanner sc = new Scanner(System.in);
+        do{
+            localIPv6 = Utils.getLocalIPv6();
+            if(!localIPv6.isEmpty()){
+                return localIPv6.get(0);
+            }
+            System.out.print("没有可用的IPV6地址,按回车重新查找:");
+            input = sc.nextLine();
+        }while (!":".equals(input));
+        System.out.print("输入IPv4地址用于测试:");
+        return sc.nextLine();
+    }
+
+    public static Integer generateRoomNumber(){
+        Random random = new Random();
+        return random.nextInt(9000) + 1000;
     }
 }
