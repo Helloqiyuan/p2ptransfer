@@ -1,6 +1,7 @@
 package com.qiyuan.pojo;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -8,6 +9,7 @@ import java.io.Serializable;
  * 连接信息
  */
 @Data
+@NoArgsConstructor
 public class Connection implements Serializable {
     // 角色信息 发送者还是接收者
     private Role role;
@@ -17,12 +19,4 @@ public class Connection implements Serializable {
     private Integer port;
     // 角色的房间号信息
     private Integer RoomNumber;
-    public Connection(Role role){
-        this.role = role;
-    }
-    public Connection(Role role, String IP, Integer port){
-        this.role = role;
-        this.IP = IP;
-        this.port = port;
-    }
 }
