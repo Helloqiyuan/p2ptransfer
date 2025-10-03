@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Client {
-        private static final String ServerIP = "112.124.44.107";
+            private static final String ServerIP = "112.124.44.107";
 //    private static final String ServerIP = "localhost";
     private static final Scanner sc = new Scanner(System.in);
     private static final String LocalIPv6;
@@ -90,9 +90,11 @@ public class Client {
             // 输入 房间号
             System.out.print("请输入房间号:");
             int roomNumber = Integer.parseInt(sc.nextLine());
-            MessageToServer = new Connection();
-            MessageToServer.setRole(Role.SENDER);
-            MessageToServer.setRoomNumber(roomNumber);
+            MessageToServer = Connection.builder()
+                    .role(Role.SENDER)
+                    .RoomNumber(roomNumber)
+                    .build();
+
             oos = new ObjectOutputStream(socket.getOutputStream());
             oos.writeObject(MessageToServer);
             oos.flush();
@@ -119,10 +121,12 @@ public class Client {
         Socket socket = new Socket(ServerIP, 1024);
         // 发送连接信息 包括身份信息 本地IPv6和端口
         int port = Utils.getAvailablePort();
-        Connection connection = new Connection();
-        connection.setRole(Role.RECEIVER);
-        connection.setIP(LocalIPv6);
-        connection.setPort(port);
+        Connection connection = Connection.builder()
+                .role(Role.RECEIVER)
+                .IP(LocalIPv6)
+                .port(port)
+                .build();
+
         ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
         oos.writeObject(connection);
         oos.flush();

@@ -1,5 +1,7 @@
 package com.qiyuan.pojo;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +11,8 @@ import java.io.Serializable;
  * 连接信息
  */
 @Data
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class Connection implements Serializable {
     // 角色信息 发送者还是接收者

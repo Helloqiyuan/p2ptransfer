@@ -4,7 +4,7 @@
 
   <groupId>com.qiyuan</groupId>
   <artifactId>p2ptransfer</artifactId>
-  <version>4.1.0</version>
+  <version>4.1.1</version>
   <packaging>jar</packaging>
 
   <name>p2ptransfer</name>
