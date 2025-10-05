@@ -42,12 +42,9 @@ public class Client {
         System.out.println("[2].接收文件");
         System.out.println("[3].退出");
         System.out.print("请选择操作(输入一个数字):");
-        List<String> oper = new ArrayList<>();
-        oper.add("1");
-        oper.add("2");
         do {
             String input = sc.nextLine();
-            if (oper.contains(input)) {
+            if ("1".equals( input) || "2".equals(input)) {
                 return input;
             } else if ("3".equals(input)) {
                 System.exit(0);

@@ -6,7 +6,7 @@ import com.qiyuan.utils.Utils;
 import java.util.List;
 import java.util.Scanner;
 
-
+@Deprecated
 public class Send {
     private static String filepath;
     private static String IPv6;

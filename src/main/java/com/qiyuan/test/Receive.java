@@ -5,7 +5,7 @@ import com.qiyuan.utils.Utils;
 
 import java.util.List;
 import java.util.Scanner;
-
+@Deprecated
 public class Receive {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);

@@ -164,7 +164,7 @@ public class Utils {
     }
 
     /**
-     * ERROR输出
+     * 通用错误信息
      */
     public static void error(){
         System.err.println("\n连接异常");
@@ -199,6 +199,11 @@ public class Utils {
         System.out.print("输入IPv4地址用于测试:");
         return sc.nextLine();
     }
+
+    /**
+     * 生成一个[1000,9999]的随机数
+     * @return 房间号
+     */
 
     public static Integer generateRoomNumber(){
         Random random = new Random();
